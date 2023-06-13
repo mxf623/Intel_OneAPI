@@ -12,9 +12,11 @@ void vector_add(int* a, int* b, int* c, int n) {
     c[i] = a[i] + b[i];
   }
 }
+```
 
 接下来，我们需要修改代码，以使用DPC++编译器和OpenCL运行时库。以下是修改后的代码：
 
+```
 #include <CL/sycl.hpp>
 
 using namespace cl::sycl;
@@ -51,13 +53,16 @@ int main() {
 
   return 0;
 }
+```
 
 在这个代码中，我们使用了DPC++编译器和OpenCL运行时库中的SYCL库来进行并行计算。我们将向量加法函数修改为一个并行计算内核，可以使用队列（queue）来执行并行计算。我们使用了gpu_selector来选择GPU设备，并在队列上调用vector_add函数。
 
 现在，我们可以使用这个代码来实现向量加法功能，并在GPU上运行。我们可以通过以下命令来编译和运行这个代码：
 
+```
 dpcpp -O2 -fsycl vector_add.cpp -o vector_add
 ./vector_add
+```
 
 这将使用DPC++编译器来编译代码，并在GPU上执行向量加法算法。在我们的测试机器上，这个算法的执行速度比CPU上的串行代码快了几倍。
 
